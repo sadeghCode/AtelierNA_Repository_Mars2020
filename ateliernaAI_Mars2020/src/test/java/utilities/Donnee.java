@@ -6,20 +6,18 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
- 
-public class dataReader {
- 
-
+ // @Mohamed Vadel: cette class contient la methode GetValue qui permet récuperer la valeur d'un paramettre en passant son nom
+public class Donnee {
    public static  String GetValue(String NameParam) throws IOException {
 	// try {
 		  // Specify the path of file
 	   	  boolean ParamFound=false;
 	   	  String ParamValue = null;
-		  File src=new File("C://Data//TestData.xlsx");
+		  File src=new File(System.getProperty("user.dir") + "\\" +Config.GetParam("ExcelName"));
+
 		   // load file
 		   FileInputStream fis=new FileInputStream(src);
-		 
-		   // Load workbook
+		   // Load workbook 
 		   XSSFWorkbook wb=new XSSFWorkbook(fis);
 		   
 		   // Load sheet- Here we are loading first sheetonly

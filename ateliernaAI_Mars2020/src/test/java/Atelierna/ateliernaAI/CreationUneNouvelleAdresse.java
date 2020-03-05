@@ -8,16 +8,15 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-import utilities.readPropFile;
+import utilities.ObjetsRepository;
 
 public class CreationUneNouvelleAdresse extends Connexion{
 	  @Test
 	public void CreationAdress() throws IOException, InterruptedException {
-	  WebDriver driver =connexion();
-	  driver.findElement(By.xpath(readPropFile.GetObject("CreationAdress"))).click();
+	 /* WebDriver driver =connexion();
+	  driver.findElement(By.xpath(ObjetsRepository.GetObject("CreationAdress"))).click();
 	  WebDriverWait wait = new WebDriverWait(driver, 10000);
-	  wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(readPropFile.GetObject("CreationAdress"))))); 
-	  
-	  
+	  wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(ObjetsRepository.GetObject("CreationAdress"))))); 
+ */
   }
 }
