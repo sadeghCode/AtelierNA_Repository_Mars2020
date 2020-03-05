@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite1]" allow-return-values="true">
+  <test name="AtelierNA(failed)">
+    <classes>
+      <class name="Atelierna.ateliernaAI.Connexion">
+        <methods>
+          <include name="DebutPageAccueil"/>
+          <include name="DebutConnexcion"/>
+          <include name="FinConnexcion"/>
+          <include name="connexion"/>
+          <include name="FinPageAccueil"/>
+        </methods>
+      </class> <!-- Atelierna.ateliernaAI.Connexion -->
+    </classes>
+  </test> <!-- AtelierNA(failed) -->
+</suite> <!-- Failed suite [Suite1] -->
