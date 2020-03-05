@@ -29,15 +29,18 @@ public class Connexion extends PageAccueil {
 	  wait.until(ExpectedConditions.visibilityOf(Element));	
 	  js.executeScript("arguments[0].scrollIntoView();", Element);
 	  // Saisie de données pour la connexion
-	  driver.findElement(By.xpath(ObjetsRepository.GetObject("EmailConnexion"))).sendKeys(Donnee.GetValue("Email"));
-	  driver.findElement(By.xpath(ObjetsRepository.GetObject("PWDConnexion"))).sendKeys(Donnee.GetValue("mdp"));
+	  driver.findElement(By.xpath(ObjetsRepository.GetObject("EmailConnexion"))).sendKeys(Donnee.GetValue("Compte","Email"));
+	  driver.findElement(By.xpath(ObjetsRepository.GetObject("PWDConnexion"))).sendKeys(Donnee.GetValue("Compte","mdp"));
 	  driver.findElement(By.xpath(ObjetsRepository.GetObject("ConnexionBoutton"))).click();
 	  String Actual=null;	
-	  //Récuperation du text, pour confirmer que la connexion s'est bien etablie
-	 // Actual=driver.findElement(By.xpath(ObjetsRepository.GetObject("ConnextionConfirmation"))).getText();
-	 // System.out.print(Actual);
-	  //ssert.assertTrue(Actual.contains("Bonjour Fadel Fadelname"));
-	  driver.close();
+	  //un temps de synchronisation
+	  WebDriverWait waitAcces = new WebDriverWait(driver, 10);
+	  WebElement Category_Body = waitAcces.until(ExpectedConditions.visibilityOfElementLocated(By.className("subtitle")));
+	  //Récuperation du message de bienvenue affiché sur l'ecran
+	  Actual=driver.findElement(By.xpath(ObjetsRepository.GetObject("MessageBienvenue"))).getText();;
+	  //Comparaison du message attendu et celui obtennu pour confirmer que la connexion s'est bien etablie
+	  Assert.assertTrue(Actual.contains(Donnee.GetValue("Compte","messageBienvenue")));
+	  //driver.close();
   }
   @BeforeSuite
   public void DebutConnexcion() {

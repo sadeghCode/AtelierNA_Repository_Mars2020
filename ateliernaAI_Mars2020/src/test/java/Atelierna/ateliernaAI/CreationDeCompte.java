@@ -38,17 +38,27 @@ public class CreationDeCompte extends PageAccueil {
 		js.executeScript("arguments[0].scrollIntoView();", Element);
 	  	driver.findElement(By.xpath(ObjetsRepository.GetObject("creationCompte"))).click();
 	    //Saisie de données pour la création du compte
-	  	driver.findElement(By.xpath(ObjetsRepository.GetObject("creationPrenom"))).sendKeys(Donnee.GetValue("creationPrenom"));//dataReader.GetValue("creationPrenom"));
-	  	driver.findElement(By.xpath(ObjetsRepository.GetObject("creationNom"))).sendKeys(Donnee.GetValue("creationNom"));//sendKeys(dataReader.GetValue("creationNome"));
-	  	driver.findElement(By.xpath(ObjetsRepository.GetObject("creationEmail"))).sendKeys(Donnee.GetValue("Email"));//sendKeys(dataReader.GetValue("creationEmail"));
+	  	driver.findElement(By.xpath(ObjetsRepository.GetObject("creationPrenom"))).sendKeys(Donnee.GetValue("Compte","creationPrenom"));//dataReader.GetValue("creationPrenom"));
+	  	driver.findElement(By.xpath(ObjetsRepository.GetObject("creationNom"))).sendKeys(Donnee.GetValue("Compte","creationNom"));//sendKeys(dataReader.GetValue("creationNome"));
+	  	driver.findElement(By.xpath(ObjetsRepository.GetObject("creationEmail"))).sendKeys(Donnee.GetValue("Compte","Email"));//sendKeys(dataReader.GetValue("creationEmail"));
 	  	driver.findElement(By.xpath(ObjetsRepository.GetObject("indicatifTelephon"))).clear();
-	  	driver.findElement(By.xpath(ObjetsRepository.GetObject("indicatifTelephon"))).sendKeys(Donnee.GetValue("indicatifTelephon"));//sendKeys(dataReader.GetValue("indicatifTelephon"));
-	  	driver.findElement(By.xpath(ObjetsRepository.GetObject("numeroTelephon"))).sendKeys(Donnee.GetValue("numeroTelephon"));//sendKeys(dataReader.GetValue("numeroTelephon"));
+	  	driver.findElement(By.xpath(ObjetsRepository.GetObject("indicatifTelephon"))).sendKeys(Donnee.GetValue("Compte","indicatifTelephon"));//sendKeys(dataReader.GetValue("indicatifTelephon"));
+	  	driver.findElement(By.xpath(ObjetsRepository.GetObject("numeroTelephon"))).sendKeys(Donnee.GetValue("Compte","numeroTelephon"));//sendKeys(dataReader.GetValue("numeroTelephon"));
 		Select JourList= new Select(driver.findElement(By.id("block-login-register-language")));
-		driver.findElement(By.xpath(ObjetsRepository.GetObject("mdp"))).sendKeys(Donnee.GetValue("mdp"));//sendKeys(dataReader.GetValue("mdp"));
-		driver.findElement(By.xpath(ObjetsRepository.GetObject("mdpConfirm"))).sendKeys(Donnee.GetValue("mdpConfirm"));//sendKeys(dataReader.GetValue("mdpConfirm"));
+		driver.findElement(By.xpath(ObjetsRepository.GetObject("mdp"))).sendKeys(Donnee.GetValue("Compte","mdp"));//sendKeys(dataReader.GetValue("mdp"));
+		driver.findElement(By.xpath(ObjetsRepository.GetObject("mdpConfirm"))).sendKeys(Donnee.GetValue("Compte","mdpConfirm"));//sendKeys(dataReader.GetValue("mdpConfirm"));
 		driver.findElement(By.xpath(ObjetsRepository.GetObject("validationbButton"))).click();	
-		//Assert.assertTrue(Actual.contains("Bonjour Fadel Fadelname"));
+		//un temps de synchronisation
+		WebDriverWait waitAcces = new WebDriverWait(driver, 10);
+		WebElement Category_Body = waitAcces.until(ExpectedConditions.visibilityOfElementLocated(By.className("subtitle")));
+		  
+		//Récuperation du message de bienvenue affiché sur l'ecran
+		String Actual;
+		Actual=driver.findElement(By.xpath(ObjetsRepository.GetObject("MessageBienvenue"))).getText();;
+		 
+		//Comparaison du message attendu et celui obtennu pour confirmer que la connexion s'est bien etablie
+		Assert.assertTrue(Actual.contains(Donnee.GetValue("Compte","messageBienvenue")));
+		//driver.close();
 
   }
 

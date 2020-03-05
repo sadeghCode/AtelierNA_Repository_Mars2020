@@ -8,7 +8,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
  // @Mohamed Vadel: cette class contient la methode GetValue qui permet récuperer la valeur d'un paramettre en passant son nom
 public class Donnee {
-   public static  String GetValue(String NameParam) throws IOException {
+   public static  String GetValue(String Sheet,String NameParam) throws IOException {
 	// try {
 		  // Specify the path of file
 	   	  boolean ParamFound=false;
@@ -21,7 +21,7 @@ public class Donnee {
 		   XSSFWorkbook wb=new XSSFWorkbook(fis);
 		   
 		   // Load sheet- Here we are loading first sheetonly
-		      XSSFSheet sh1= wb.getSheetAt(0);
+		      XSSFSheet sh1= wb.getSheet(Sheet);
 		      int Rows=sh1.getLastRowNum();
 		      XSSFRow row = sh1.getRow(0);
 		      int colNum = row.getLastCellNum();
